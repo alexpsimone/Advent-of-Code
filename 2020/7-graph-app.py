@@ -4,9 +4,10 @@ class BagNode():
 
         self.data = data
         self.children = children or []
-        
+
     def __repr__(self):
         return '<Node {data}>'.format(data=self.data)
+
 
 class BagGraph():
 
