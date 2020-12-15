@@ -29,13 +29,42 @@ def is_valid_cipher(num_list):
     
     return False
 
+def find_encryption_weakness(NUMS):
+    """Find the first number that doesn't have the required property."""    
 
-for idx in range(len(NUMS)-25):
+    for idx in range(len(NUMS)-25):
 
-    num_list = create_num_window(idx, NUMS)
-    # print(num_list)
+        num_list = create_num_window(idx, NUMS)
+        # print(num_list)
 
-    if not is_valid_cipher(num_list):
+        if not is_valid_cipher(num_list):
 
-        print(num_list[-1])
-        break
+            return (idx, num_list[-1])
+
+
+def recurse_to_solution(NUMS, first, last):
+
+    window = NUMS[first:last]
+
+    # if those numbers equal the key val, then return those numbers
+    if sum(window) == 104054607:
+       window.sort()
+       return window[0] + window[-1]
+    
+    # if the sum is larger than the key val, then move the front of the window back 1 idx
+    if sum(window) > 104054607:
+        recurse_to_solution(NUMS, first, last -1)
+
+    # if the sum is smaller than the key val, then extend the size of the window by 1 and compare the new sum
+    if sum(window) < 104054607:
+        recurse_to_solution(NUMS, first - 1, last)
+
+
+
+idx, target = find_encryption_weakness(NUMS)
+
+print(recurse_to_solution(NUMS, idx - 2, idx))
+
+
+# sortlist = numlist.sort()
+# print(sortlist)
