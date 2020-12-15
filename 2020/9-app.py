@@ -48,6 +48,7 @@ def recurse_to_solution(NUMS, first, last):
 
     # if those numbers equal the key val, then return those numbers
     if sum(window) == 104054607:
+        # this doesn't actually return anything meaningful; I finished this by hand after getting window
        window.sort()
        return window[0] + window[-1]
     
@@ -64,7 +65,3 @@ def recurse_to_solution(NUMS, first, last):
 idx, target = find_encryption_weakness(NUMS)
 
 print(recurse_to_solution(NUMS, idx - 2, idx))
-
-
-# sortlist = numlist.sort()
-# print(sortlist)
