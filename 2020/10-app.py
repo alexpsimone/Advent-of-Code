@@ -11,8 +11,6 @@ for line in data:
     adapters.append(int(line))
     adapters.sort()
 
-print(adapters)
-
 # initialize 0 instances of 1-jolt difference
 one_jolt_diff = 0
 # initialize 0 instances of 1-jolt difference (don't need yet but might for part 2)
@@ -49,4 +47,36 @@ for count in range(len(adapters)-1):
 
 
 # return the number of each differences found
-print(one_jolt_diff, three_jolt_diff, one_jolt_diff*three_jolt_diff)
+print(one_jolt_diff*three_jolt_diff)
+
+
+max_adapter = adapters[-1] + 3
+adapters.append(max_adapter)
+
+# initialize a multiplied val
+options_dict = {}
+
+# for each adapter
+for adapter in adapters:
+    # initialize a counter at 0
+    counter = 1
+    # for every other adapter
+    for other_adapter in adapters:
+        # if that adapter is at most 3 more than this adapter
+        if 1 <= (other_adapter - adapter) <= 3:
+            # add one to the counter
+            counter += 1
+    # multiply the values of the counters to each other
+    options_dict[adapter] = counter - 1
+
+
+total_options = 1
+options_list = []
+
+for option in options_dict:
+    options_list.append(options_dict[option])
+
+for option in options_list[:-1]:
+    total_options *= option
+
+print(total_options)
