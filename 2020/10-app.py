@@ -54,29 +54,19 @@ max_adapter = adapters[-1] + 3
 adapters.append(max_adapter)
 
 # initialize a multiplied val
-options_dict = {}
+total_options = 1
 
 # for each adapter
-for adapter in adapters:
+for adapter in adapters[:-1]:
     # initialize a counter at 0
-    counter = 1
+    counter = 0
     # for every other adapter
-    for other_adapter in adapters:
+    for other_adapter in adapters[:-1]:
         # if that adapter is at most 3 more than this adapter
         if 1 <= (other_adapter - adapter) <= 3:
             # add one to the counter
             counter += 1
     # multiply the values of the counters to each other
-    options_dict[adapter] = counter - 1
+    total_options *= counter
 
-
-total_options = 1
-options_list = []
-
-for option in options_dict:
-    options_list.append(options_dict[option])
-
-for option in options_list[:-1]:
-    total_options *= option
-
-print(total_options)
+    print(total_options)
